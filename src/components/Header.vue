@@ -8,8 +8,9 @@ export default {};
         <span class="flex gap-12 grow">
       <img src="" alt="logo" />
       <RouterLink to="/" class="font-bold">Home</RouterLink>
-      <RouterLink to="/" class="font-bold">Search</RouterLink>
+      <RouterLink to="/videogames" class="font-bold">Search</RouterLink>
       <RouterLink to="/" class="font-bold">My games</RouterLink>
+      
     </span>
       <button
         type="button"
