@@ -12,12 +12,12 @@ onMounted(() => {
 </script>
 
 <template>
-    <div class="px-8 py-8">
-    <ul role="list" class="divide-y divide-gray-200">
+    <div class="px-28 py-8 ">
+    <ul role="list" class="divide-y divide-purple-600">
             <li v-for="videogame in videogameStore.videogames" class="py-8">
-                <div class="flex items-center">
+                <div class="flex gap-12 items-center">
                     <div class="flex-shrink-0">
-                        <img class="w-8 h-8 rounded-full" :src="videogame.image" :alt="videogame.name">
+                        <img class="w-24 h-24 rounded-md object-cover" :src="videogame.image" :alt="videogame.name">
                     </div>
                     <div class="flex-1 min-w-0 ms-12">
                         <p class="text-lg font-medium text-gray-900 truncate">
