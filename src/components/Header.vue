@@ -3,15 +3,23 @@ import { RouterLink } from "vue-router";
 export default {};
 </script>
 <template>
-  <header class="bg-gradient-to-r from-indigo-500 via-purple-500 to-red-500 ">
+  <header class="bg-gradient-to-r from-indigo-500 via-purple-500 to-red-500">
     <nav class="flex px-4 py-4 text-xl items-center">
-        <span class="flex gap-12 grow">
-      <img src="" alt="logo" />
-      <RouterLink to="/" class="font-bold">Home</RouterLink>
-      <RouterLink to="/videogames" class="font-bold">Search</RouterLink>
-      <RouterLink to="/" class="font-bold">My games</RouterLink>
-      
-    </span>
+      <span class="flex gap-12 grow items-center">
+        <span class="flex items-center gap-5">
+          <img
+            class="w-16 h-16"
+            src="../assets/images/wilder logo.png"
+            alt="logo"
+          />
+          <span class="text-2xl font-bold text-black">WILDER</span>
+        </span>
+        <RouterLink to="/" class="text-2xl font-bold">Home</RouterLink>
+        <RouterLink to="/videogames" class="text-2xl font-bold"
+          >Search</RouterLink
+        >
+        <RouterLink to="/" class="text-2xl font-bold">My games</RouterLink>
+      </span>
       <button
         type="button"
         class="font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center"
