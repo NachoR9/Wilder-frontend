@@ -13,6 +13,9 @@ async function handleLogin(event) {
     await authStore.login(username.value, password.value);
 
     if (authStore.isAuthenticated) {   
+        document.getElementById('close-modal').click()
+        username.value = ""
+        password.value = ""
     } else {
       alert('Login failed: ' + authStore.errorMessage);
     }
