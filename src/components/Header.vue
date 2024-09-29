@@ -21,6 +21,8 @@ export default {};
         <RouterLink to="/" class="text-2xl font-bold">My games</RouterLink>
       </span>
       <button
+        data-modal-target="authentication-modal"
+        data-modal-toggle="authentication-modal"
         type="button"
         class="font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center"
       >
