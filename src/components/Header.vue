@@ -1,7 +1,14 @@
-<script>
+<script setup>
 import { RouterLink } from "vue-router";
-export default {};
+import { useAuthStore } from "@/stores/auth.js";
+
+const authStore = useAuthStore();  
+
+async function handleLogout() {
+  await authStore.logout();
+}
 </script>
+
 <template>
   <header class="bg-gradient-to-r from-indigo-500 via-purple-500 to-red-500">
     <nav class="flex px-4 py-4 text-xl items-center">
@@ -20,6 +27,7 @@ export default {};
         >
         <RouterLink to="/" class="text-2xl font-bold">My games</RouterLink>
       </span>
+
       <button
         data-modal-target="authentication-modal"
         data-modal-toggle="authentication-modal"
@@ -38,6 +46,23 @@ export default {};
           />
         </svg>
         <span class="sr-only">Icon description</span>
+      </button>
+      <button
+        @click="handleLogout"
+        type="button"
+        class="font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          height="24px"
+          viewBox="0 -960 960 960"
+          width="24px"
+          fill="#5f6368"
+        >
+          <path
+            d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h280v80H200v560h280v80H200Zm440-160-55-58 102-102H360v-80h327L585-622l55-58 200 200-200 200Z"
+          />
+        </svg>
       </button>
     </nav>
   </header>

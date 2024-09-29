@@ -17,7 +17,8 @@ export const useAuthStore = defineStore('auth', () => {
             auth: {
               username: user,
               password: password
-            }
+            },
+            withCredentials: true
           });
 
           token.value = response.data.token || '';
@@ -34,5 +35,23 @@ export const useAuthStore = defineStore('auth', () => {
         }
       }
 
-      return { isAuthenticated, token, username, userRole, errorMessage, login};
+      const logoutEndpoint = 'http://localhost:8080/api/v1/logout';
+
+      async function logout() {
+        try {
+            const response = await axios.get(logoutEndpoint, {
+                withCredentials: true
+            })
+        
+        isAuthenticated.value = false;
+        token.value = '';
+        username.value = '';
+        userRole.value = '';
+    
+        localStorage.removeItem('authToken');
+      } catch (error) {
+        console.error('Login error:', error);
+      }
+    }
+      return { isAuthenticated, token, username, userRole, errorMessage, login, logout};
     });
