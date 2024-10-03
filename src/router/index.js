@@ -13,6 +13,11 @@ const router = createRouter({
       path: '/videogames',
       name: 'videogames',
       component: () => import('@/views/VideogamesListView.vue')
+    },
+    {
+      path: '/admin',
+      name: 'admin',
+      component: () => import('@/views/AdminCreateView.vue')
     }
   ]
 })
