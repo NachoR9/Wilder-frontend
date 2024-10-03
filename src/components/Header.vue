@@ -16,7 +16,7 @@ async function handleLogout() {
         <span class="flex items-center gap-5">
           <img
             class="w-16 h-16"
-            src="../assets/images/wilder logo.png"
+            src="../assets/images/wilder-logo.png"
             alt="logo"
           />
           <span class="text-2xl font-bold text-black">WILDER</span>
