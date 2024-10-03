@@ -19,7 +19,7 @@ async function handleLogout() {
             src="../assets/images/wilder-logo.png"
             alt="logo"
           />
-          <span class="text-2xl font-bold text-black">WILDER</span>
+          <span class="bungee-inline-regular">WILDER</span>
         </span>
         <RouterLink to="/" class="text-2xl font-bold">Home</RouterLink>
         <RouterLink to="/videogames" class="text-2xl font-bold"
@@ -69,3 +69,13 @@ async function handleLogout() {
     </nav>
   </header>
 </template>
+
+<style scoped>
+.bungee-inline-regular {
+  font-family: "Bungee Inline", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: xx-large;
+  color: black;
+}
+</style>
