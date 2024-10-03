@@ -23,13 +23,15 @@ export const useAuthStore = defineStore("auth", () => {
 
       token.value = response.data.token || "";
       username.value = response.data.Username;
-      userRole.value = response.data.role;
+      userRole.value = response.data.roles;
       isAuthenticated.value = true;
       errorMessage.value = "";
 
       localStorage.setItem("authToken", token.value);
+      localStorage.setItem("userRole", userRole.value);
     } catch (error) {
       isAuthenticated.value = false;
+      userRole.value = "";
       errorMessage.value = "Invalid username or password";
       console.error("Login error:", error);
     }
@@ -49,6 +51,7 @@ export const useAuthStore = defineStore("auth", () => {
       userRole.value = "";
 
       localStorage.removeItem("authToken");
+      localStorage.removeItem("userRole");
     } catch (error) {
       console.error("Login error:", error);
     }
