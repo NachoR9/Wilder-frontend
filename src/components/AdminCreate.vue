@@ -1,15 +1,40 @@
 <script setup>
-import { ref } from "vue";
+import { onMounted, ref, useTemplateRef } from "vue";
 import { useAuthStore } from "@/stores/auth.js";
+import axios from "axios";
 const name = ref("");
-const genres = ref("");
+const genres = ref([]);
 const releaseDate = ref("");
 const company = ref("");
 const platform = ref("");
+const apiGenres = ref([]);
+
+onMounted(async () => {
+  const response = await axios.get("http://localhost:8080/api/v1/genres");
+  apiGenres.value = response.data;
+});
 
 async function handleCreate(event) {
-    event.preventDefault();
-    
+  event.preventDefault();
+  const selectedGenres = [];
+  for (let i = 0; i < genres.value.length; i++) {
+    if (genres.value[i].checked) {
+      selectedGenres.push(i + 1);
+    }
+  }
+  axios.post(
+    "http://localhost:8080/api/v1/videogames",
+    {
+      name: name.value,
+      genres: selectedGenres,
+      releaseDate: releaseDate.value,
+      company: company.value,
+      platform: platform.value,
+    },
+    {
+      withCredentials: true,
+    }
+  );
 }
 </script>
 
@@ -31,22 +56,65 @@ async function handleCreate(event) {
         required
       />
     </div>
-    <div>
-      <label
-        for="genres"
+
+    <label
+        for=""
         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
         >Add genres</label
       >
-      <input
-        type="genres"
-        name="genres"
-        id="genres"
-        placeholder="genres"
-        v-model="genres"
-        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-        required
-      />
+    <button
+      id="dropdownBgHoverButton"
+      data-dropdown-toggle="dropdownBgHover"
+      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 inline-flex w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-whitepx-5 py-2.5 text-center items-center"
+      type="button"
+    >
+      Select genres
+      <svg
+        class="w-2.5 h-2.5 ms-3"
+        aria-hidden="true"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 10 6"
+      >
+        <path
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="m1 1 4 4 4-4"
+        />
+      </svg>
+    </button>
+
+    <div
+      id="dropdownBgHover"
+      class="z-10 hidden w-48 bg-white rounded-lg shadow dark:bg-gray-700"
+    >
+      <ul
+        class="p-3 h-48 overflow-y-auto space-y-1 text-sm text-gray-700 dark:text-gray-200"
+        aria-labelledby="dropdownBgHoverButton"
+      >
+        <li v-for="genre in apiGenres">
+          <div
+            class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600"
+          >
+            <input
+              ref="genres"
+              :id="`genre-${genre.id}`"
+              type="checkbox"
+              :value="genre.id"
+              class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
+            />
+            <label
+              :for="`genre-${genre.id}`"
+              class="w-full ms-2 text-sm font-medium text-gray-900 rounded dark:text-gray-300"
+              >{{ genre.name }}</label
+            >
+          </div>
+        </li>
+      </ul>
     </div>
+
     <div>
       <label
         for="release-date"
