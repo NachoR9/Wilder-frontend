@@ -26,7 +26,8 @@ async function handleLogout() {
           >Search</RouterLink
         >
         <RouterLink to="/" class="text-2xl font-bold">My games</RouterLink>
-      </span>
+      <RouterLink v-if="authStore.userRole === 'ROLE_ADMIN'" to="/admin" class="text-2xl font-bold">Admin</RouterLink>
+    </span>
 
       <button
         @click="handleLogout"
