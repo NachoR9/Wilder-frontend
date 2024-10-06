@@ -16,13 +16,13 @@ onMounted(async () => {
 });
 
 async function removeVideogame(id) {
-//   const response = await axios.post(
-//     "http://localhost:8080/api/v1/user/videogames",
-//     {
-//       id: id,
-//     },
-//     { withCredentials: true }
-//   );
+  const response = await axios.delete(
+    `http://localhost:8080/api/v1/user/videogames/${id}`,
+    { withCredentials: true }
+  );
+  if (response.status === 200) {
+    myVideogames.value = myVideogames.value.filter(v => v.id !== id)
+  }
 }
 </script>
 
