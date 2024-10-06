@@ -31,6 +31,17 @@ async function addVideogame(id) {
   );
 }
 
+async function deleteVideogame(id) {
+    const response = await axios.delete(
+        `http://localhost:8080/api/v1/videogames/${id}`,
+        { withCredentials: true }
+    )
+
+    if (response.status === 200) {
+        videogameStore.remove(id)
+    }
+}
+
 function filterGames(e) {
     e.preventDefault();
     videogameStore.fetchVideogames(selectedGenre.value);
@@ -83,6 +94,13 @@ function filterGames(e) {
               class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
             >
               Add to My games
+            </button>
+            <button @click="deleteVideogame(videogame.id)"
+                v-if="authStore.userRole === 'ROLE_ADMIN'"
+                type="buton"
+                class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
+            >
+                Delete game
             </button>
           </div>
         </div>

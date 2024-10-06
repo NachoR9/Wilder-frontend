@@ -26,5 +26,8 @@ export const useVideogameStore = defineStore('videogameStore', {
           this.isLoading = false;
         }
       },
+      remove(id) {
+        this.videogames = this.videogames.filter(v => v.id !== id)
+      }
     },
   });
