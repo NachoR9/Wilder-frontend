@@ -8,10 +8,10 @@ import { useRoute } from "vue-router";
 const videogameStore = useVideogameStore();
 const authStore = useAuthStore();
 
-const route = useRoute()
+const route = useRoute();
 
-const genres = ref([])
-const selectedGenre = ref("")
+const genres = ref([]);
+const selectedGenre = ref("");
 
 onMounted(async () => {
   const genre = route.query.genre;
@@ -32,29 +32,38 @@ async function addVideogame(id) {
 }
 
 async function deleteVideogame(id) {
-    const response = await axios.delete(
-        `http://localhost:8080/api/v1/videogames/${id}`,
-        { withCredentials: true }
-    )
+  const response = await axios.delete(
+    `http://localhost:8080/api/v1/videogames/${id}`,
+    { withCredentials: true }
+  );
 
-    if (response.status === 200) {
-        videogameStore.remove(id)
-    }
+  if (response.status === 200) {
+    videogameStore.remove(id);
+  }
 }
 
 function filterGames(e) {
-    e.preventDefault();
-    videogameStore.fetchVideogames(selectedGenre.value);
+  e.preventDefault();
+  videogameStore.fetchVideogames(selectedGenre.value);
 }
-
 </script>
 
 <template>
   <form @submit="filterGames" class="flex items-center gap-8 px-28 py-8">
-    <label for="genres" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select a genre</label>
-    <select v-model="selectedGenre" id="genres" class="grow bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-        <option value="">All</option>
-        <option v-for="genre in genres" :value="genre.id" >{{ genre.name }}</option>
+    <label
+      for="genres"
+      class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+      >Select a genre</label
+    >
+    <select
+      v-model="selectedGenre"
+      id="genres"
+      class="grow bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+    >
+      <option value="">All</option>
+      <option v-for="genre in genres" :value="genre.id">
+        {{ genre.name }}
+      </option>
     </select>
     <button
       type="submit"
@@ -84,7 +93,7 @@ function filterGames(e) {
           </div>
 
           <div
-            class="inline-flex flex-col gap-3 items-center text-md font-semibold text-gray-900"
+            class="inline-flex flex-col gap-3 items-end text-md font-semibold text-gray-900"
           >
             {{ videogame.platform }}
             <button
@@ -95,13 +104,19 @@ function filterGames(e) {
             >
               Add to My games
             </button>
-            <button @click="deleteVideogame(videogame.id)"
-                v-if="authStore.userRole === 'ROLE_ADMIN'"
-                type="buton"
-                class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
+            <button
+              @click="deleteVideogame(videogame.id)"
+              v-if="authStore.userRole === 'ROLE_ADMIN'"
+              type="buton"
+              class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
             >
-                Delete game
+              Delete game
             </button>
+            <RouterLink
+              :to="`/admin/edit/${videogame.id}`"
+              class="focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:focus:ring-yellow-900"
+              >Edit game</RouterLink
+            >
           </div>
         </div>
       </li>

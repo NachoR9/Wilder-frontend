@@ -20,6 +20,11 @@ const router = createRouter({
       component: () => import('@/views/AdminCreateView.vue')
     },
     {
+      path: '/admin/edit/:id',
+      name: 'adminEdit',
+      component: () => import('@/views/AdminUpdateView.vue')
+    },
+    {
       path: '/my-games',
       name: 'my-games',
       component: () => import('@/views/UserVideogamesView.vue')
