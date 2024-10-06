@@ -1,20 +1,22 @@
 <script setup>
 import Slider from '@/components/Slider.vue';
 import Card from '@/components/Card.vue';
+import { onMounted, ref } from 'vue';
+import axios from 'axios';
+
+const genres = ref([]);
+
+onMounted(async () => {
+  const response = await axios.get("http://localhost:8080/api/v1/genres");
+  genres.value = response.data;
+});
 </script>
 
 <template>
   <main>
    <Slider />
    <div class="grid grid-cols-4 gap-4 mt-8 px-8">
-   <Card title="Action" image="src/assets/images/zeldaechoes.webp"/>
-   <Card title="Fighting" image="src/assets/images/zeldaechoes.webp"/>
-   <Card title="Horror" image="src/assets/images/zeldaechoes.webp"/>
-   <Card title="Platformers" image="src/assets/images/zeldaechoes.webp"/>
-   <Card title="RPG" image="src/assets/images/zeldaechoes.webp"/>
-   <Card title="Simulation" image="src/assets/images/zeldaechoes.webp"/>
-   <Card title="Sport" image="src/assets/images/zeldaechoes.webp"/>
-   <Card title="Strategy" image="src/assets/images/zeldaechoes.webp"/>
+      <Card v-for="genre in genres" :title="genre.name" image="src/assets/images/zeldaechoes.webp" />
    </div>
   </main>
 </template>
