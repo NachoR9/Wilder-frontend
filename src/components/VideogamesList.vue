@@ -3,12 +3,16 @@ import { ref, onMounted } from "vue";
 import { useVideogameStore } from "@/stores/videogames";
 import { useAuthStore } from "@/stores/auth.js";
 import axios from "axios";
+import { useRoute } from "vue-router";
 
 const videogameStore = useVideogameStore();
 const authStore = useAuthStore();
 
+const route = useRoute()
+
 onMounted(() => {
-  videogameStore.fetchVideogames();
+  const genre = route.query.genre
+  videogameStore.fetchVideogames(genre);
 });
 
 async function addVideogame(id) {

@@ -7,10 +7,14 @@ export const useVideogameStore = defineStore('videogameStore', {
       isLoading: false,
     }),
     actions: {
-      async fetchVideogames() {
+      async fetchVideogames(genre) {
         this.isLoading = true;
         try {
-          const response = await axios.get('http://localhost:8080/api/v1/videogames');
+          const response = await axios.get('http://localhost:8080/api/v1/videogames', {
+            params: {
+              genre: genre
+            }
+          });
           if (response.data && Array.isArray(response.data)) {
             this.videogames = response.data;
           } else {
