@@ -1,31 +1,35 @@
 <script setup>
 import { ref, onMounted } from "vue";
-import { useVideogameStore } from "@/stores/videogames";
 import { useAuthStore } from "@/stores/auth.js";
 import axios from "axios";
 
-const videogameStore = useVideogameStore();
 const authStore = useAuthStore();
+const myVideogames = ref([]);
 
-onMounted(() => {
-  videogameStore.fetchVideogames();
+onMounted(async () => {
+  const response = await axios.get(
+    "http://localhost:8080/api/v1/user/videogames", {
+        withCredentials: true
+    }
+  );
+  myVideogames.value = response.data;
 });
 
-async function addVideogame(id) {
-  const response = await axios.post(
-    "http://localhost:8080/api/v1/user/videogames",
-    {
-      id: id,
-    },
-    { withCredentials: true }
-  );
+async function removeVideogame(id) {
+//   const response = await axios.post(
+//     "http://localhost:8080/api/v1/user/videogames",
+//     {
+//       id: id,
+//     },
+//     { withCredentials: true }
+//   );
 }
 </script>
 
 <template>
   <div class="px-28 py-8">
     <ul role="list" class="divide-y divide-purple-600">
-      <li v-for="videogame in videogameStore.videogames" class="py-8">
+      <li v-for="videogame in myVideogames" class="py-8">
         <div class="flex gap-12 items-center">
           <div class="flex-shrink-0">
             <img
@@ -48,12 +52,12 @@ async function addVideogame(id) {
           >
             {{ videogame.platform }}
             <button
-              @click="addVideogame(videogame.id)"
+              @click="removeVideogame(videogame.id)"
               v-if="authStore.isAuthenticated"
               type="button"
-              class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
+              class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
             >
-              Add to My games
+              Remove videogame
             </button>
           </div>
         </div>
