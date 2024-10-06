@@ -25,7 +25,7 @@ async function handleLogout() {
         <RouterLink to="/videogames" class="text-2xl font-bold"
           >Search</RouterLink
         >
-        <RouterLink to="/" class="text-2xl font-bold">My games</RouterLink>
+        <RouterLink v-if="authStore.isAuthenticated" to="/" class="text-2xl font-bold">My games</RouterLink>
       <RouterLink v-if="authStore.userRole === 'ROLE_ADMIN'" to="/admin" class="text-2xl font-bold">Admin</RouterLink>
     </span>
 

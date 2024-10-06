@@ -15,7 +15,7 @@ import RegisterForm from './RegisterForm.vue';
           class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600"
         >
           <h3 class="text-center grow text-xl font-semibold text-gray-900 dark:text-white">
-            Sign in to WILDER <img class="size-8 inline" src="../assets/images/wilder logo.png">
+            Sign in to WILDER <img class="size-8 inline" src="../assets/images/wilder-logo.png">
           </h3>
           <button
             type="button"
