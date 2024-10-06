@@ -3,10 +3,10 @@ import { defineStore } from "pinia";
 import { ref } from "vue";
 
 export const useAuthStore = defineStore("auth", () => {
-  const isAuthenticated = ref(false);
+  const isAuthenticated = ref(localStorage.getItem("authenticated") === "true");
   const token = ref("");
   const username = ref("");
-  const userRole = ref("");
+  const userRole = ref(localStorage.getItem("userRole") ?? "");
   const errorMessage = ref("");
 
   const loginEndpoint = "http://localhost:8080/api/v1/login";
@@ -29,6 +29,7 @@ export const useAuthStore = defineStore("auth", () => {
 
       localStorage.setItem("authToken", token.value);
       localStorage.setItem("userRole", userRole.value);
+      localStorage.setItem("authenticated", true)
     } catch (error) {
       isAuthenticated.value = false;
       userRole.value = "";
@@ -52,6 +53,7 @@ export const useAuthStore = defineStore("auth", () => {
 
       localStorage.removeItem("authToken");
       localStorage.removeItem("userRole");
+      localStorage.removeItem("authenticated")
     } catch (error) {
       console.error("Login error:", error);
     }
