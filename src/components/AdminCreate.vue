@@ -2,6 +2,7 @@
 import { onMounted, ref, useTemplateRef } from "vue";
 import { useAuthStore } from "@/stores/auth.js";
 import axios from "axios";
+import { initFlowbite } from "flowbite";
 const name = ref("");
 const genres = ref([]);
 const releaseDate = ref("");
@@ -10,6 +11,7 @@ const platform = ref("");
 const apiGenres = ref([]);
 
 onMounted(async () => {
+  initFlowbite()
   const response = await axios.get("http://localhost:8080/api/v1/genres");
   apiGenres.value = response.data;
 });

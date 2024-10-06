@@ -1,6 +1,12 @@
 <script setup>
+import { onMounted } from 'vue';
 import LoginForm from './LoginForm.vue';
 import RegisterForm from './RegisterForm.vue';
+import { initModals } from 'flowbite';
+
+onMounted(() => {
+  initModals()
+})
 </script>
 <template>
   <div

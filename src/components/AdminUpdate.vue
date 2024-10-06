@@ -2,6 +2,7 @@
 import { onMounted, ref } from "vue";
 import axios from "axios";
 import { useRoute } from "vue-router";
+import { initFlowbite } from "flowbite";
 
 const gameId = ref(0)
 const name = ref("");
@@ -15,6 +16,7 @@ const image = ref("")
 const route = useRoute()
 
 onMounted(async () => {
+  initFlowbite();
   const response = await axios.get("http://localhost:8080/api/v1/genres");
   apiGenres.value = response.data;
   const id = route.params.id;

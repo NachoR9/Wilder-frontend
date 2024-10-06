@@ -1,8 +1,14 @@
 <script setup>
 import { RouterLink } from "vue-router";
 import { useAuthStore } from "@/stores/auth.js";
+import { onMounted } from "vue";
+import { initModals } from "flowbite";
 
-const authStore = useAuthStore();  
+const authStore = useAuthStore();
+
+onMounted(() => {
+  initModals()
+})
 
 async function handleLogout() {
   await authStore.logout();
