@@ -5,8 +5,5 @@ import UserVideogamesView from '@/components/UserVideogames.vue';
 
 
 <template>
-    <main>
-
-        <UserVideogamesView/>
-    </main>
+    <UserVideogamesView/>
 </template>

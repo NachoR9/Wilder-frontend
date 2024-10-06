@@ -12,7 +12,7 @@ export default {
 </script>
 
 <template>
-<div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+<div class="max-w-sm bg-white bg-opacity-40 rounded-lg shadow hover:scale-105 transition duration-75 ease-in-out dark:bg-gray-800 dark:border-gray-700">
     <RouterLink :to="to">
         <img class="rounded-t-lg" :src="image" alt="" />
     </RouterLink>

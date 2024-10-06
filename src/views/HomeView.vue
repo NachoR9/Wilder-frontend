@@ -13,15 +13,13 @@ onMounted(async () => {
 </script>
 
 <template>
-  <main>
-    <Slider />
-    <div class="grid grid-cols-4 gap-4 mt-8 px-8">
-      <Card
-        v-for="genre in genres"
-        :title="genre.name"
-        :to="`/videogames?genre=${genre.id}`"
-        image="src/assets/images/zeldaechoes.webp"
-      />
-    </div>
-  </main>
+  <Slider />
+  <div class="grid grid-cols-4 gap-6 mt-8 px-8 py-8">
+    <Card
+      v-for="genre in genres"
+      :title="genre.name"
+      :to="`/videogames?genre=${genre.id}`"
+      image="src/assets/images/zeldaechoes.webp"
+    />
+  </div>
 </template>

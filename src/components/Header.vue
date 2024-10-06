@@ -54,11 +54,10 @@ async function handleLogout() {
         </svg>
       </button>
       <button
-        v-else
         data-modal-target="authentication-modal"
         data-modal-toggle="authentication-modal"
         type="button"
-        class="font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center"
+        :class="`${authStore.isAuthenticated ? 'hidden' : ''} font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center`"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"

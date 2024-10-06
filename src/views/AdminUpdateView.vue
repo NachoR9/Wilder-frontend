@@ -5,8 +5,5 @@ import AdminUpdate from '@/components/AdminUpdate.vue';
 
 
 <template>
-    <main>
-
-        <AdminUpdate/>
-    </main>
+    <AdminUpdate/>
 </template>

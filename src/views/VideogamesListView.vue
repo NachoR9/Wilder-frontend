@@ -5,8 +5,5 @@ import VideogamesList from '@/components/VideogamesList.vue';
 
 
 <template>
-    <main>
-
-        <VideogamesList/>
-    </main>
+    <VideogamesList/>
 </template>

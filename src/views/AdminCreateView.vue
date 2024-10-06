@@ -6,8 +6,5 @@ import AdminCreate from '@/components/AdminCreate.vue';
 
 
 <template>
-    <main>
-
-        <AdminCreate/>
-    </main>
+    <AdminCreate/>
 </template>

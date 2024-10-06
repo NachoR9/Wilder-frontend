@@ -8,7 +8,9 @@ import LoginModal from './components/LoginModal.vue';
 <template>
   <Header />
   <LoginModal />
-  <RouterView />
+  <main class="grow bg-gradient-to-r from-red-200 to-red-600">
+    <RouterView />
+  </main>
   <Footer />
 </template>
 
