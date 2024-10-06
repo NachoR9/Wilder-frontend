@@ -1,6 +1,8 @@
 <script setup>
 import { ref } from 'vue';
-import { useAuthStore } from '@/stores/auth.js'; 
+import { useAuthStore } from '@/stores/auth.js';  
+
+const emit = defineEmits(['toggle'])
 
 const username = ref('');
 const password = ref('');
@@ -15,6 +17,10 @@ async function handleRegister(event) {
   } catch (error) {
     console.error('Register error:', error);
   }
+}
+
+function toggle() {
+  emit('toggle')
 }
 </script>
 
@@ -74,5 +80,8 @@ async function handleRegister(event) {
             >
               Create an account
             </button>
+            <div class="text-sm font-medium text-gray-500 dark:text-gray-300">
+                Already have an account? <button type="button" @click="toggle" class="text-blue-700 hover:underline dark:text-blue-500">Log in</button>
+            </div>
           </form>
 </template>

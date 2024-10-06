@@ -2,6 +2,8 @@
 import { ref } from 'vue';
 import { useAuthStore } from '@/stores/auth.js'; 
 
+const emit = defineEmits(['toggle'])
+
 const username = ref('');
 const password = ref('');
 const authStore = useAuthStore();  
@@ -22,6 +24,10 @@ async function handleLogin(event) {
   } catch (error) {
     console.error('Login error:', error);
   }
+}
+
+function toggle() {
+  emit('toggle')
 }
 </script>
 
@@ -65,5 +71,8 @@ async function handleLogin(event) {
             >
               Login to your account
             </button>
+            <div class="text-sm font-medium text-gray-500 dark:text-gray-300">
+                Not registered? <button type="button" @click="toggle" href="#" class="text-blue-700 hover:underline dark:text-blue-500">Create account</button>
+            </div>
           </form>
 </template>
