@@ -49,7 +49,10 @@ function filterGames(e) {
 </script>
 
 <template>
-  <form @submit="filterGames" class="flex items-center gap-8 px-28 py-8">
+  <form
+    @submit="filterGames"
+    class="flex items-center gap-8 px-4 sm:px-28 py-8"
+  >
     <label
       for="genres"
       class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
@@ -72,7 +75,7 @@ function filterGames(e) {
       Filter
     </button>
   </form>
-  <div class="px-28 py-8">
+  <div class="px-4 sm:px-28 py-8">
     <ul role="list" class="divide-y divide-purple-600">
       <li v-for="videogame in videogameStore.videogames" class="py-8">
         <div class="flex gap-12 items-center">
@@ -83,11 +86,11 @@ function filterGames(e) {
               :alt="videogame.name"
             />
           </div>
-          <div class="flex-1 min-w-0 ms-12">
-            <p class="text-lg font-medium text-gray-900 truncate">
+          <div class="flex-1 min-w-0 md:ms-12">
+            <p class="text-lg font-medium text-gray-900">
               {{ videogame.name }}
             </p>
-            <p class="text-md text-gray-500 truncate">
+            <p class="text-md text-gray-500">
               {{ videogame.genres.join(", ") }}
             </p>
           </div>
@@ -100,7 +103,7 @@ function filterGames(e) {
               @click="addVideogame(videogame.id)"
               v-if="authStore.isAuthenticated"
               type="button"
-              class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
+              class="hidden md:block focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
             >
               Add to My games
             </button>
@@ -108,17 +111,41 @@ function filterGames(e) {
               @click="deleteVideogame(videogame.id)"
               v-if="authStore.userRole === 'ROLE_ADMIN'"
               type="buton"
-              class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
+              class="hidden md:block focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
             >
               Delete game
             </button>
             <RouterLink
               :to="`/admin/edit/${videogame.id}`"
               v-if="authStore.userRole === 'ROLE_ADMIN'"
-              class="focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:focus:ring-yellow-900"
+              class="hidden md:block focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:focus:ring-yellow-900"
               >Edit game</RouterLink
             >
           </div>
+        </div>
+        <div class="flex md:hidden pt-2 justify-around">
+          <button
+            @click="addVideogame(videogame.id)"
+            v-if="authStore.isAuthenticated"
+            type="button"
+            class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
+          >
+            Add to My games
+          </button>
+          <button
+            @click="deleteVideogame(videogame.id)"
+            v-if="authStore.userRole === 'ROLE_ADMIN'"
+            type="buton"
+            class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
+          >
+            Delete game
+          </button>
+          <RouterLink
+            :to="`/admin/edit/${videogame.id}`"
+            v-if="authStore.userRole === 'ROLE_ADMIN'"
+            class="focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:focus:ring-yellow-900"
+            >Edit game</RouterLink
+          >
         </div>
       </li>
     </ul>

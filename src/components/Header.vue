@@ -18,7 +18,7 @@ async function handleLogout() {
 <template>
   <header class="bg-gradient-to-r from-indigo-500 via-purple-500 to-red-500">
     <nav class="flex px-4 py-4 text-xl items-center">
-      <span class="flex gap-12 grow items-center">
+      <span class="flex gap-12 grow items-center flex-col md:flex-row">
         <span class="flex items-center gap-5">
           <img
             class="w-16 h-16"
@@ -27,12 +27,14 @@ async function handleLogout() {
           />
           <span class="bungee-inline-regular">WILDER</span>
         </span>
-        <RouterLink to="/" class="text-2xl font-bold">Home</RouterLink>
-        <RouterLink to="/videogames" class="text-2xl font-bold"
-          >Search</RouterLink
-        >
-        <RouterLink v-if="authStore.isAuthenticated" to="/my-games" class="text-2xl font-bold">My games</RouterLink>
-      <RouterLink v-if="authStore.userRole === 'ROLE_ADMIN'" to="/admin" class="text-2xl font-bold">Admin</RouterLink>
+        <span class="flex gap-12 items-center justify-around">
+          <RouterLink to="/" class="text-sm md:text-2xl font-bold">Home</RouterLink>
+          <RouterLink to="/videogames" class="text-sm md:text-2xl font-bold"
+            >Search</RouterLink
+          >
+          <RouterLink v-if="authStore.isAuthenticated" to="/my-games" class="text-sm md:text-2xl font-bold">My games</RouterLink>
+        <RouterLink v-if="authStore.userRole === 'ROLE_ADMIN'" to="/admin" class="text-sm md:text-2xl font-bold">Admin</RouterLink>
+      </span>
     </span>
 
       <button

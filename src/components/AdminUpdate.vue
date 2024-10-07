@@ -60,7 +60,7 @@ async function handleUpdate(event) {
 </script>
 
 <template>
-  <form @submit="handleUpdate" class="space-y-4 grow px-28 py-8" action="#">
+  <form @submit="handleUpdate" class="space-y-4 grow px-4 sm:px-28 py-8" action="#">
     <div>
       <label
         for="name"

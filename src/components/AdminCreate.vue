@@ -41,7 +41,7 @@ async function handleCreate(event) {
 </script>
 
 <template>
-  <form @submit="handleCreate" class="space-y-4 grow px-28 py-8" action="#">
+  <form @submit="handleCreate" class="space-y-4 grow px-4 sm:px-28 py-8" action="#">
     <div>
       <label
         for="name"

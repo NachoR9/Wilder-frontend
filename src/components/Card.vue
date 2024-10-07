@@ -12,9 +12,9 @@ export default {
 </script>
 
 <template>
-<div class="max-w-sm flex flex-col bg-white bg-opacity-40 rounded-lg shadow hover:scale-105 transition duration-75 ease-in-out dark:bg-gray-800 dark:border-gray-700">
+<div class="flex flex-col bg-white bg-opacity-40 rounded-lg shadow hover:scale-105 transition duration-75 ease-in-out dark:bg-gray-800 dark:border-gray-700">
     <RouterLink class="grow" :to="to">
-        <img class="rounded-t-lg h-full object-cover" :src="image" alt="" />
+        <img class="rounded-t-lg size-full object-cover" :src="image" alt="" />
     </RouterLink>
     <div class="p-5">
         <RouterLink :to="to">

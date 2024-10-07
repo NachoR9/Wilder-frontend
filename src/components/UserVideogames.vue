@@ -27,7 +27,7 @@ async function removeVideogame(id) {
 </script>
 
 <template>
-  <div class="px-28 py-8">
+  <div class="px-4 sm:px-28 py-8">
     <ul role="list" class="divide-y divide-purple-600">
       <li v-for="videogame in myVideogames" class="py-8">
         <div class="flex gap-12 items-center">
@@ -38,11 +38,11 @@ async function removeVideogame(id) {
               :alt="videogame.name"
             />
           </div>
-          <div class="flex-1 min-w-0 ms-12">
-            <p class="text-lg font-medium text-gray-900 truncate">
+          <div class="flex-1 min-w-0 md:ms-12">
+            <p class="text-lg font-medium text-gray-900">
               {{ videogame.name }}
             </p>
-            <p class="text-md text-gray-500 truncate">
+            <p class="text-md text-gray-500">
               {{ videogame.genres.join(", ") }}
             </p>
           </div>
@@ -55,12 +55,22 @@ async function removeVideogame(id) {
               @click="removeVideogame(videogame.id)"
               v-if="authStore.isAuthenticated"
               type="button"
-              class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
+              class="hidden md:block focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
             >
               Remove videogame
             </button>
           </div>
         </div>
+        <div class="flex md:hidden pt-2 flex-row-reverse">
+            <button
+              @click="removeVideogame(videogame.id)"
+              v-if="authStore.isAuthenticated"
+              type="button"
+              class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
+            >
+              Remove videogame
+            </button>
+          </div>
       </li>
     </ul>
   </div>
