@@ -1,14 +1,14 @@
-# personal_project-frontend
+# Wilder-Frontend
+Wilder is a website that provides the user with the possibility of storing their favorite games by adding them from a list and the capability to also delete them and filter them by genre.
 
-This template should help get you started developing with Vue 3 in Vite.
-
-## Recommended IDE Setup
-
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+# Stacks and technologies used
++ Front-end: HTML, CSS, JS, Vue3 + Vite
++ Tailwind CSS
++ Axios
++ Firebase
++ Flowbite
++ Pinia
++ Vitest: npm install -D vitest
 
 ## Project Setup
 
@@ -16,20 +16,9 @@ See [Vite Configuration Reference](https://vitejs.dev/config/).
 npm install
 ```
 
-### Compile and Hot-Reload for Development
+# Compile and Hot-Reload for Development
 
 ```sh
 npm run dev
 ```
 
-### Compile and Minify for Production
-
-```sh
-npm run build
-```
-
-### Run Unit Tests with [Vitest](https://vitest.dev/)
-
-```sh
-npm run test:unit
-```
