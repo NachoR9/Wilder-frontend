@@ -1,9 +1,13 @@
 <script setup>
-import { ref, onMounted } from "vue";
+import { ref, onMounted, onUnmounted } from "vue";
 import { useVideogameStore } from "@/stores/videogames";
 import { useAuthStore } from "@/stores/auth.js";
 import axios from "axios";
 import { useRoute } from "vue-router";
+import {
+  Ripple,
+  initTWE,
+} from "tw-elements";
 
 const videogameStore = useVideogameStore();
 const authStore = useAuthStore();
@@ -13,13 +17,41 @@ const route = useRoute();
 const genres = ref([]);
 const selectedGenre = ref("");
 
+let mybutton = null;
+
+const scrollFunction = () => {
+  if (
+    document.body.scrollTop > 900 ||
+    document.documentElement.scrollTop > 900
+  ) {
+    mybutton.classList.remove("hidden");
+  } else {
+    mybutton.classList.add("hidden");
+  }
+};
+
 onMounted(async () => {
   const genre = route.query.genre;
   videogameStore.fetchVideogames(genre);
   selectedGenre.value = genre ?? "";
   const response = await axios.get("http://localhost:8080/api/v1/genres");
   genres.value = response.data;
+
+  initTWE({ Ripple });
+
+  mybutton = document.getElementById("btn-back-to-top");
+  const backToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  mybutton.addEventListener("click", backToTop);
+
+  window.addEventListener("scroll", scrollFunction);
 });
+
+onUnmounted(() => {
+  window.removeEventListener('scroll', scrollFunction)
+})
 
 async function addVideogame(id) {
   const response = await axios.post(
@@ -150,4 +182,24 @@ function filterGames(e) {
       </li>
     </ul>
   </div>
+  <button
+  type="button"
+  data-twe-ripple-init
+  data-twe-ripple-color="light"
+  class="!fixed bottom-5 end-5 hidden rounded-full bg-purple-600 p-3 text-xs font-medium uppercase leading-tight text-white shadow-md transition duration-150 ease-in-out hover:bg-purple-600 hover:shadow-lg focus:bg-purple-600 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-purple-600 active:shadow-lg"
+  id="btn-back-to-top">
+  <span class="[&>svg]:w-4">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke-width="3"
+      stroke="currentColor">
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        d="M4.5 10.5 12 3m0 0 7.5 7.5M12 3v18" />
+    </svg>
+  </span>
+</button>
 </template>
