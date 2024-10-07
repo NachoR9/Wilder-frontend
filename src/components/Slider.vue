@@ -6,7 +6,7 @@ const index = ref(0);
 const items = ref([
   "src/assets/images/zeldaechoes.webp",
   "src/assets/images/dragonageveilguard.png",
-  "src/assets/images/dragonballsparkingzero.png",
+  "src/assets/images/dragonballsparkingzero.webp",
 ]);
 
 function next() {
@@ -34,7 +34,7 @@ function slideTo(i) {
 
 <template>
   <div id="indicators-carousel" class="relative w-full">
-    <div class="relative h-56 overflow-hidden rounded-lg md:h-96">
+    <div class="relative h-56 overflow-hidden md:h-96">
       <div
         v-for="(item, i) in items"
         :class="`duration-700 ease-in-out ${index === i ? '' : 'hidden'}`"
